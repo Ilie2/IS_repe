@@ -1,0 +1,25 @@
+e1.d
+e2.c,f
+e3.a,c,g,b
+e4.a, c, g
+e5.b
+e6.a,d,e
+e7.c
+e8.d
+e9.b,e,g,i
+e10.b
+e11.a,d
+e12.c,d,e
+e13.c,e
+
+e1
+a. incorecta Produs e intewrfata
+b. clasa carete nu e subclasa
+c. interfata nu exista 
+e.nu exista legatura dintre 
+
+e2.
+a, b nu se extinde sau impelementeaza o revisata
+d,e,g nu exista in diagrama 
+
+e3.

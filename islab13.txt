@@ -1,0 +1,50 @@
+    Explicarea tripletelor Hoare:
+1
+(a) {{x == y}} z := x - y {{z == 0}}: Înainte de executarea instrucțiunii z := x - y, precondiția afirmă că x și y sunt egale. După executarea instrucțiunii, z va primi valoarea diferenței lor, care știm că trebuie să fie 0 deoarece x și y sunt egale.
+
+(b) {{true}} x := 100 {{x == 100}}: Deoarece precondiția este întotdeauna adevărată, ea nu oferă informații specifice despre x. După executarea instrucțiunii x := 100, postcondiția garantează că x va fi într-adevăr 100.
+
+(c) {{0 <= x < 100}} x := x + 1 {{0 <= x <= 100}}: Precondiția afirmă că x este în intervalul [0, 100). După executarea instrucțiunii x := x + 1, postcondiția asigură că x va rămâne în intervalul [0, 100], inclusiv.
+
+ 2 Găsirea contraexemplelor:
+
+(a) {{true}} x := 2 * y {{y <= x}}: Acest triplet nu este valabil pentru toate valorile lui y și x. De exemplu, dacă y = 2 și x = 1, atunci 2 * y = 4, ceea ce nu este mai mic sau egal cu x.
+
+(b) {{0 <= x}} x := x - 1 {{0 <= x}}: Dacă începem cu x = 0, după executarea instrucțiunii x := x - 1, x devine -1, încălcând precondiția.
+
+    3Înlocuirea predicatelor:
+
+(a) {{0 <= x < 100}} x := 2 * x {{0 <= x < 200}}: După dublarea lui x, acesta va rămâne în intervalul [0, 200), presupunând că x a început în intervalul [0, 100).
+
+(b) {{0 <= x < N}} x := x + 1 {{1 <= x < N + 1}}: Adăugând 1 la x, acesta va rămâne în intervalul [1, N + 1), presupunând că x a început în intervalul [0, N).
+
+    4Completarea tripletelor Hoare:
+
+(a) {{true}} x := 400 {{x == 400}}: Înainte de executarea instrucțiunii, x poate avea orice valoare. După executarea instrucțiunii x := 400, postcondiția garantează că x va fi într-adevăr 400.
+
+(b) {{y <= 65}} x := 65 {{y <= x}}: Înainte de executarea instrucțiunii, x poate avea orice valoare mai mică sau egală cu 65. După executarea instrucțiunii x := 65, postcondiția garantează că x va fi în continuare mai mare sau egal cu y.
+
+5Suma primelor n numere naturale:
+
+method SumOfFirstNNumbers(n: int) returns (sum: int)
+  requires n >= 0
+  ensures sum == n * (n + 1) / 2
+{
+  var i := 1;
+  sum := 0;
+  while i <= n
+    invariant 0 <= i <= n + 1
+    invariant sum == (i - 1) * i / 2
+  {
+    sum := sum + i;
+    i := i + 1;
+  }
+}
+
+6Produsul primelor n numere naturale:
+
+Pentru a calcula produsul primelor n numere naturale, programul ar fi:
+
+
+
+Pentru a demonstra corectitudinea totală, trebuie să verificați că invariantul buclei este valabil la începutul buclei, este păstrat pe parcursul buclei și asigură postcondiția dorită.
